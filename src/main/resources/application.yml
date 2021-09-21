@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  tomcat:
+    basedir: ./temp/
+spring:
+  #  mvc:
+  #    view:
+  #      prefix: /WEB-INF/jsp/
+  #      suffix: .jsp
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/qbserver?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    name: root
+    password: 8721818
+
+  redis:
+    database: 0
+    host: 127.0.0.1
+    password: aqbs1234
+    port: 6379
+
+  jpa:
+    hibernate:
+      # 在程序启动时更新实体类对应的表
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+      ddl-auto: update
+    # 在日志中打印出执行的SQL语句信息
+    show-sql: true
+#    naming:
+#      physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
