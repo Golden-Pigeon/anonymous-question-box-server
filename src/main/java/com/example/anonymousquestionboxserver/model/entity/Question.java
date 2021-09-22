@@ -19,6 +19,7 @@ import java.util.Objects;
 public class Question {
 
     @Id
+    @NonNull
     String id;
     Date askDate;
     Date lastModifiedDate;
@@ -26,6 +27,10 @@ public class Question {
     String answererIdentify;
     String question;
     String content;
+
+    public Question() {
+        this("");
+    }
 
     @Override
     public boolean equals(Object o) {

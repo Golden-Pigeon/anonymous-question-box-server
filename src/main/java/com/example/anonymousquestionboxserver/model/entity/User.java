@@ -1,5 +1,6 @@
 package com.example.anonymousquestionboxserver.model.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -17,12 +18,18 @@ import java.util.Objects;
 @Table
 public class User {
     @Id
+    @NonNull
     private String openId;
     private String name;
     private Integer askedCnt;
     private Integer askCnt;
     private Integer answerCnt;
     private String identify;
+
+    public User() {
+        this("");
+    }
+
 
     @Override
     public boolean equals(Object o) {
