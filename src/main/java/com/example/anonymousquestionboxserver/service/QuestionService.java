@@ -9,5 +9,5 @@ public interface QuestionService {
 
     ResultDTO getNotAnsweredList(String sessionKey);
 
-    ResultDTO answerQuestion(String sessionKey, String content);
+    ResultDTO answerQuestion(String sessionKey, String content, String questionId);
 }
