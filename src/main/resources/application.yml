@@ -2,6 +2,15 @@ server:
   port: 8080
   tomcat:
     basedir: ./temp/
+#  ssl:
+#
+#    enabled: true
+#    key-store: classpath:5307296_goldenpigeon.top.pfx
+#    key-store-type: pkcs12
+#    key-alias: alias
+#    key-password: 0N9dGSJp
+#    key-store-password: 0N9dGSJp
+
 spring:
   #  mvc:
   #    view:
@@ -15,12 +24,12 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/qbserver?characterEncoding=utf-8&serverTimezone=GMT%2B8
-    name: root
+    username: root
     password: 8721818
 
   redis:
     database: 0
-    host: 127.0.0.1
+    host: 172.29.33.30
     password: aqbs1234
     port: 6379
 

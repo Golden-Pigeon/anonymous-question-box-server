@@ -46,7 +46,7 @@ http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>8.0.21</scope>
+            <scope>5.1.6</scope>
         </dependency>
 
         <dependency>
