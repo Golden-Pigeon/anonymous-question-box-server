@@ -157,21 +157,29 @@ public class QuestionServiceImpl implements QuestionService {
     public ResultDTO askQuestion(String sessionKey, String question, String answererIdentify){
 
         Question q = new Question();
-        Optional<User> answererOpt = userRepository.findByIdentify(answererIdentify);
+//        Optional<User> answererOpt = userRepository.findByIdentify(answererIdentify);
         Optional<User> questionerOpt = userRepository.findByIdentify(redisHelper.getValue(sessionKey));
-        if(!answererOpt.isPresent() || !questionerOpt.isPresent()){
+        if(!questionerOpt.isPresent()){
             return new ResultDTO(ResultEnum.USER_NOT_FOUND);
         }
         User questioner = questionerOpt.get();
         if(redisHelper.getValue(sessionKey).equals(answererIdentify)){
             return new ResultDTO(ResultEnum.CANNOT_ASK_YOUR_SELF);
         }
-        User answerer = answererOpt.get();
+//
 //        User questioner = questionerOpt.get();
         questioner.setAskCnt(questioner.getAskCnt() + 1);
+//        userRepository.save(answerer);
+        userRepository.save(questioner);
+//        answerer.setAskedCnt(answerer.getAskedCnt() + 1);
+        Optional<User> answererOpt = userRepository.findByIdentify(answererIdentify);
+        if(!answererOpt.isPresent()){
+            return new ResultDTO(ResultEnum.USER_NOT_FOUND);
+        }
+        User answerer = answererOpt.get();
+//        answerer = userRepository.findByIdentify(answererIdentify).get();
         answerer.setAskedCnt(answerer.getAskedCnt() + 1);
         userRepository.save(answerer);
-        userRepository.save(questioner);
         q.setAskDate(new Date(System.currentTimeMillis()));
         q.setLastModifiedDate(new Date(System.currentTimeMillis()));
         q.setQuestionerIdentify(redisHelper.getValue(sessionKey));
