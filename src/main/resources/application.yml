@@ -29,7 +29,7 @@ spring:
 
   redis:
     database: 0
-    host: 172.18.169.154
+    host: 127.0.0.1
     password: aqbs1234
     port: 6379
 

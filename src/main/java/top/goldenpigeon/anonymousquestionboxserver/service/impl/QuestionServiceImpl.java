@@ -150,6 +150,7 @@ public class QuestionServiceImpl implements QuestionService {
         answerer.setAnswerCnt(answerer.getAnswerCnt() + 1);
         userRepository.save(answerer);
         q.setContent(content);
+        q.setLastModifiedDate(new Date(System.currentTimeMillis()));
         questionRepository.save(q);
         return new ResultDTO(ResultEnum.SUCCESS);
     }
@@ -163,9 +164,9 @@ public class QuestionServiceImpl implements QuestionService {
             return new ResultDTO(ResultEnum.USER_NOT_FOUND);
         }
         User questioner = questionerOpt.get();
-        if(redisHelper.getValue(sessionKey).equals(answererIdentify)){
-            return new ResultDTO(ResultEnum.CANNOT_ASK_YOUR_SELF);
-        }
+//        if(redisHelper.getValue(sessionKey).equals(answererIdentify)){
+//            return new ResultDTO(ResultEnum.CANNOT_ASK_YOUR_SELF);
+//        }
 //
 //        User questioner = questionerOpt.get();
         questioner.setAskCnt(questioner.getAskCnt() + 1);
